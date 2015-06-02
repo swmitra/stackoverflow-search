@@ -9,7 +9,7 @@ An extension for the popular open-source code editor Brackets to search stackove
 Features
 --------
 
-* Query stackover flow topic search using Bloodhound and Typeahead
+* Query stackover flow topics using Bloodhound and Typeahead
 * Inline display of topic details from stackoverflow in a flat intutive format
 * Dyanamic Button Shortcut to copy code snippet to clipboard and paste in editor
 
