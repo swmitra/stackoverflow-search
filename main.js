@@ -20,13 +20,14 @@ define(function (require, exports, module) {
     var ContentBodyTemplate = '<div class="se-search" id="search-content-body" style="-webkit-user-select: auto;height:calc(100% - 5px);width: calc(100% - 10px);background:white;overflow:auto;padding:4px;"></div>';
     var PaneHeaderTemplate = '{{header}}'
                             +'<a class ="close se-search" id="close-se-search" style="color:red;">×</a>'
-                            +'<img class="close se-search" src="extensions/default/StackexchangeSearch/images/stackoverflow.png" id="open-se-in-browser" style="width:40px;height:20px;margin-right:10px;">';
+                            +'<img class="close se-search" src="{{module_path}}/images/stackoverflow.png" id="open-se-in-browser" style="width:30px;height:20px;margin-right:10px;">';
     
     var SearchURL = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&site=stackoverflow&answers=true&filter=withbody&key=DSONRG3bHBdQOMnrMZUIew((&intitle=';
     var AnswerURL = 'https://api.stackexchange.com/2.2/questions/{{id}}/answers?order=desc&site=stackoverflow&filter=withbody&answers=true&key=DSONRG3bHBdQOMnrMZUIew((';
     var CommentsURL = 'https://api.stackexchange.com/2.2/answers/{{id}}/comments?order=desc&sort=creation&site=stackoverflow&filter=withbody&key=DSONRG3bHBdQOMnrMZUIew((';
     
     var ExtensionUtils = brackets.getModule("utils/ExtensionUtils");
+    var MODULE_PATH = ExtensionUtils.getModulePath(module);
     
     require("lib/typeahead.jquery");
     require("lib/bloodhound");
@@ -59,7 +60,10 @@ define(function (require, exports, module) {
                             $("#second-pane .pane-content").children().hide();
                             $("#second-pane .not-editor").show();
                             $("#second-pane .not-editor").html(ContentBodyTemplate);
-                            $("#second-pane .pane-header").html(PaneHeaderTemplate.split('{{header}}').join(object.value));                                     
+                            $("#second-pane .pane-header").html(PaneHeaderTemplate
+                                                                .split('{{header}}').join(object.value)
+                                                                .split("{{module_path}}").join(MODULE_PATH)
+                                                               );                                     
                             $("#search-content-body").html("");
                             $("#search-content-body").append("<h4 class='question'>Question</h4>");
                             $("#search-content-body").append(object.content);
