@@ -1,0 +1,12 @@
+{
+    "name": "swmitra.stackoverflow-search",
+    "title": "Search Stackoverflow.com",
+    "description": "search stackoverflow.com for solutions to coding problems and receive an inline response to work with",
+    "homepage": "https://github.com/swmitra/stackoverflow-search",
+    "version": "1.0.0",
+    "author": "Swagatam Mitra <swagatammitra@gmail.com>",
+    "license": "MIT",
+    "engines": {
+        "brackets": ">=1.0.0"
+    }
+}
