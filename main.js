@@ -7,6 +7,7 @@ define(function (require, exports, module) {
     var AppInit = brackets.getModule("utils/AppInit"),
         SearchTemplate = require("text!html/stack-exchange-search-template.html"),
         Strings = brackets.getModule("strings"),
+        Menus = brackets.getModule("command/Menus"),
         ModalBar = brackets.getModule("widgets/ModalBar").ModalBar,
         CommandManager = brackets.getModule("command/CommandManager"),
         Commands = brackets.getModule("command/Commands"),
@@ -20,7 +21,7 @@ define(function (require, exports, module) {
     var ContentBodyTemplate = '<div class="se-search" id="search-content-body" style="-webkit-user-select: auto;height:calc(100% - 5px);width: calc(100% - 10px);background:white;overflow:auto;padding:4px;"></div>';
     var PaneHeaderTemplate = '{{header}}'
                             +'<a class ="close se-search" id="close-se-search" style="color:red;">×</a>'
-                            +'<img class="close se-search" src="{{module_path}}/images/stackoverflow.png" id="open-se-in-browser" style="width:30px;height:20px;margin-right:10px;">';
+                            +"<button id='open-se-in-browser' style='border:1px solid lightgray;border-radius:4px;-webkit-style:none;float:right;margin-top:-1px;margin-right:5px;color:white;'>Open In Browser</button>";
     
     var SearchURL = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&site=stackoverflow&answers=true&filter=withbody&key=DSONRG3bHBdQOMnrMZUIew((&intitle=';
     var AnswerURL = 'https://api.stackexchange.com/2.2/questions/{{id}}/answers?order=desc&site=stackoverflow&filter=withbody&answers=true&key=DSONRG3bHBdQOMnrMZUIew((';
@@ -177,8 +178,12 @@ define(function (require, exports, module) {
 
      AppInit.appReady(function () {
          //Register search command 
-         CommandManager.register(SEARCH_COMMAND, SEARCH_COMMAND, _toggleStackSearch);
-         KeyBindingManager.addBinding(SEARCH_COMMAND,"Shift-Cmd-Space");
+         CommandManager.register("Find in Stackoverflow.com", SEARCH_COMMAND, _toggleStackSearch);
+         KeyBindingManager.addBinding(SEARCH_COMMAND,"Ctrl-Alt-W");
+         Menus.getMenu(Menus.AppMenuBar.FIND_MENU).addMenuItem(SEARCH_COMMAND
+                                                               ,"Ctrl-Alt-W"
+                                                               ,Menus.LAST_IN_SECTION
+                                                               ,Menus.MenuSection.FIND_FIND_IN_COMMANDS);
          
     });
     
