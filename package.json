@@ -3,7 +3,7 @@
     "title": "Search Stackoverflow.com",
     "description": "search(Ctrl-Alt-W or Find->Find in Stackoverflow.com) stackoverflow.com for solutions to coding problems and receive an inline response to work with",
     "homepage": "https://github.com/swmitra/stackoverflow-search",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "author": "Swagatam Mitra <swagatammitra@gmail.com>",
     "license": "MIT",
     "engines": {

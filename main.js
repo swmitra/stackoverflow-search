@@ -11,7 +11,6 @@ define(function (require, exports, module) {
         ModalBar = brackets.getModule("widgets/ModalBar").ModalBar,
         CommandManager = brackets.getModule("command/CommandManager"),
         Commands = brackets.getModule("command/Commands"),
-        KeyBindingManager = brackets.getModule("command/KeyBindingManager"),
         EditorManager = brackets.getModule("editor/EditorManager"),
         Commands = brackets.getModule("command/Commands");
     
@@ -179,7 +178,6 @@ define(function (require, exports, module) {
      AppInit.appReady(function () {
          //Register search command 
          CommandManager.register("Find in Stackoverflow.com", SEARCH_COMMAND, _toggleStackSearch);
-         KeyBindingManager.addBinding(SEARCH_COMMAND,"Ctrl-Alt-W");
          Menus.getMenu(Menus.AppMenuBar.FIND_MENU).addMenuItem(SEARCH_COMMAND
                                                                ,"Ctrl-Alt-W"
                                                                ,Menus.LAST_IN_SECTION
